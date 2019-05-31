@@ -11,12 +11,16 @@ class QuestionABC(abc.ABC):
 			QuestionABC.SEQ += 1
 		self.Id = id
 		self.Markdown = markdown
+		self.Answers = {}
 
-		print(self.Id)
 
 	@abc.abstractmethod
 	def evaluate_answer(self, answer):
 		raise NotImplemented()
+
+
+	def put_answer(self, user, answer):
+		self.Answers[user] = answer
 
 
 
