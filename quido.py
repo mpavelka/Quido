@@ -1,5 +1,5 @@
 import os
-from quido import Quiz, Question, OptionsQuestion
+from quido import Quiz, Question, OptionsQuestion, QuestionSlide
 
 quiz = Quiz()
 quiz.add_questions([
@@ -22,68 +22,12 @@ quiz.add_questions([
 	),
 ])
 
-exit(1)
-
-quiz.add_slide(
-	MarkdownSlide(
-		quiz,
-		path=os.path.join(os.path.dirname(__file__), "var", "markdown", "01_welcome.md"),
-	)
-)
-quiz.add_slide(
-	QuestionSlide(quiz)
-)
-quiz.add_slide(
-	StatisticsSlide(quiz)
-)
-quiz.add_slide(
-	QuestionSlide(
-		quiz,
-		OptionsQuestion("What is your name?",
-			options=[
-				"First is correct",
-				"Incorrect",
-				"Incorrect2",
-			]
-		)
-	)
-)
-quiz.add_slide(
-	QuestionSlide(
-		quiz,
-		
-	)
-)
-quiz.add_slide(
-	StatisticsSlide(
-		quiz,
-		question_id="Q_ARE_YOU_CORRECT"
-	)
-)
+quiz.add_slides([
+	QuestionSlide(quiz),
+	QuestionSlide(quiz),
+	QuestionSlide(quiz),
+])
 
 
-# Start quiz
-quiz.reset()
-
-quiz.set_answer()
-quiz.next_slide()
-quiz.get_current_slide()
-quiz.set_slide(1)
-quiz.set_slide(id="dfa")
-
-quiz.answer_current(user, 1)
-quiz.answer(question_id="Q_ARE_YOU_CORRECT", user=user, answer=1)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+while quiz.next_slide():
+	print(quiz.CurrentQuestion.Markdown)

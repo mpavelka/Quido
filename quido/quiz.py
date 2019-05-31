@@ -17,11 +17,6 @@ class Quiz(object):
 	def add_question(self, question):
 		self.Questions.append(question)
 
-		# If this is first question, make it current
-		if len(self.Questions) == 1:
-			self.CurrentQuestion = question
-			self._current_question_index = 0
-
 
 	def add_questions(self, questions):
 		for question in questions:
@@ -49,9 +44,9 @@ class Quiz(object):
 		self.Slides.append(slide)
 
 
-	def add_slides(self, sli):
-		for question in questions:
-			self.add_question(question)
+	def add_slides(self, slides):
+		for slide in slides:
+			self.add_slide(slide)
 
 
 	def next_slide(self):
@@ -68,6 +63,8 @@ class Quiz(object):
 		# Next slide
 		self._current_slide_index += 1
 		self.CurrentSlide = self.Slides[self._current_slide_index]
+		# Run slide's on_enter
+		self.CurrentSlide.on_enter()
 		return True
 
 
