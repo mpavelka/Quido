@@ -7,7 +7,7 @@ class QuestionABC(abc.ABC):
 
 	def __init__(self, markdown: str, id=None):
 		if id is None:
-			id = QuestionABC.SEQ
+			id = str(QuestionABC.SEQ)
 			QuestionABC.SEQ += 1
 		self.Id = id
 		self.Markdown = markdown
