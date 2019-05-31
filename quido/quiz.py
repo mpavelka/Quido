@@ -50,6 +50,10 @@ class Quiz(object):
 
 
 	def next_slide(self):
+		# Exit previous slide
+		if self.CurrentSlide is not None:
+			self.CurrentSlide.on_exit()
+
 		# No slides at all
 		if len(self.Slides) == 0:
 			return False
