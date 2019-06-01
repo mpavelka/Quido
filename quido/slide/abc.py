@@ -28,10 +28,10 @@ class SlideABC(abc.ABC):
 	def render(self):
 		return {
 			"type": type(self).__name__,
-			"data": self.to_dict()
+			"data": self.data()
 		}
 
 
 	@abc.abstractmethod
-	def to_dict(self):
+	def data(self):
 		raise NotImplemented()

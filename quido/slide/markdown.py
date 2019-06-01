@@ -13,7 +13,7 @@ class MarkdownSlide(SlideABC):
 		self.Quiz.next_question()
 
 
-	def to_dict(self):
+	def data(self):
 		return {
 			"markdown": self._markdown
 		}

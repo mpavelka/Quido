@@ -40,6 +40,13 @@ class Quiz(object):
 		return True
 
 
+	def get_question(self, id):
+		for question in self.Questions:
+			if question.Id == id:
+				return question
+		return None
+
+
 	def add_slide(self, slide):
 		self.Slides.append(slide)
 
@@ -71,6 +78,12 @@ class Quiz(object):
 		self.CurrentSlide.on_enter()
 		return True
 
+
+	def add_answer(self, user, question, answer: str):
+		if question not in self.Answers:
+			self.Answers[question] = {}
+
+		self.Answers[question][user] = Answer(question, answer)
 
 
 

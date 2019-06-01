@@ -1,5 +1,6 @@
 import abc
 import hashlib
+from .answer import Answer
 
 
 
@@ -19,14 +20,18 @@ class QuestionABC(abc.ABC):
 		return self
 
 
-	def to_dict(self):
+	def render(self):
 		_dict = {}
 		_dict["markdown"] = self.Markdown
 		return _dict
 
 
-	def add_answer(self, user, answer):
-		self.Answers[user] = answer
+	def answer(self, user, answer):
+		self.Answers[user] = Answer(self, answer, user)
+
+
+	def render_answers(self):
+		return [answer.render() for user, answer in self.Answers.items()]
 
 
 	@abc.abstractmethod
@@ -46,7 +51,7 @@ class Question(QuestionABC):
 class OptionsQuestion(QuestionABC):
 
 
-	def __init__(self, markdown: str, options: list, correct: int):
+	def __init__(self, markdown: str, options: list, correct: str):
 		super().__init__(markdown)
 		self._options = options
 		self._correct = correct

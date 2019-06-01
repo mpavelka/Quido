@@ -7,6 +7,6 @@ class QuestionSlide(SlideABC):
 		self.Quiz.next_question()
 
 
-	def to_dict(self):
+	def data(self):
 		question = self.Quiz.CurrentQuestion
-		return question.to_dict()
+		return question.render()

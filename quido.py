@@ -31,3 +31,12 @@ quiz.add_slides([
 
 while quiz.next_slide():
 	print(quiz.CurrentSlide.render())
+
+question_1 = quiz.get_question("0")
+question_1.answer("renca", "Renca")
+question_1.answer("mila", "Mila")
+question_1.answer("lala", "Lalinecka")
+
+print(question_1.render_answers())
+
+
