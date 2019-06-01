@@ -30,4 +30,4 @@ quiz.add_slides([
 
 
 while quiz.next_slide():
-	print(quiz.CurrentQuestion.Markdown)
+	print(quiz.CurrentSlide.render())
